@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>REWIRE</title>
+<style>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(145deg,#fffaf2,#f2edff,#eef8ff);color:#17151d}
+*{box-sizing:border-box}
+.wrap{max-width:650px;margin:auto;padding:20px}
+.logo{font-weight:900;letter-spacing:5px;margin:15px 0 35px}
+.card{background:#ffffffd9;border:1px solid #e8e1ed;border-radius:26px;padding:28px;margin-bottom:18px;box-shadow:0 18px 50px #7d5ca012}
+h1{font-size:38px;line-height:1.05;margin:10px 0}
+h2{font-size:27px}
+p{color:#706b76;line-height:1.6}
+.tr{font-size:13px;color:#928b98;margin-top:-8px}
+button{width:100%;padding:16px;border:0;border-radius:15px;background:linear-gradient(135deg,#7657e8,#5a3bcc);color:#fff;font-weight:800;font-size:16px;margin-top:15px}
+input{width:100%;padding:16px;border:1px solid #ddd4e3;border-radius:14px;font-size:16px}
+.hidden{display:none}
+.option{padding:15px;border:1px solid #e2dbe7;border-radius:15px;margin:9px 0;background:white;cursor:pointer}
+.option.on{border-color:#7758e8;background:#f4f0ff}
+.progress{height:7px;background:#eee8f2;border-radius:30px;overflow:hidden;margin-bottom:22px}
+.progress div{height:100%;background:#7657e8}
+.score{font-size:70px;font-weight:900}
+.tag{display:inline-block;padding:8px 11px;background:#f1ecff;border-radius:30px;margin:4px}
+.task{padding:15px;background:#fff;border:1px solid #e6dfea;border-radius:14px;margin:9px 0}
+.lock{filter:blur(3px);opacity:.5}
+.price{font-size:60px;font-weight:900}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="logo">REWIRE</div>
+
+<div class="card" id="start">
+<div>✨ PERSÖNLICHE ANALYSE</div>
+<h1>Du brauchst nicht mehr Motivation.</h1>
+<div class="tr">Daha fazla motivasyona ihtiyacın yok.</div>
+<p>Du brauchst ein System, das zu dir passt.</p>
+<div class="tr">Sana uygun bir sisteme ihtiyacın var.</div>
+<button onclick="show('name')">Meine Analyse starten →</button>
+</div>
+
+<div class="card hidden" id="name">
+<h2>Schön, dass du hier bist. 👋</h2>
+<div class="tr">Burada olmana sevindik. 👋</div>
+<p>Wie dürfen wir dich nennen?</p>
+<div class="tr">Sana nasıl hitap edelim?</div>
+<input id="username" placeholder="Dein Vorname">
+<button onclick="begin()">Weiter →</button>
+</div>
+
+<div class="card hidden" id="quiz">
+<div class="progress"><div id="bar"></div></div>
+<small id="num"></small>
+<h2 id="question"></h2>
+<div id="options"></div>
+<button onclick="next()">Weiter →</button>
+</div>
+
+<div class="card hidden" id="result">
+<div>🧠 DEIN PERSÖNLICHES PROFIL</div>
+<div class="tr">KİŞİSEL PROFİLİN</div>
+<h1 id="hello"></h1>
+<h2>THE RESTARTER 🔁</h2>
+<div class="score">54<span style="font-size:18px">/100</span></div>
+<p>Gesamt-Score</p>
+<div class="tr">Genel skor</div>
+
+<div class="tag">🧠 Fokus 46</div>
+<div class="tag">🔥 Disziplin 51</div>
+<div class="tag">🔁 Konstanz 38</div>
+<div class="tag">📅 Routine 49</div>
+
+<p><b>Dein größter Hebel scheint nicht Motivation, sondern Konstanz zu sein.</b></p>
+<div class="tr"><b>En büyük ihtiyacın motivasyondan çok devamlılık gibi görünüyor.</b></div>
+
+<button onclick="show('preview')">Meinen ersten Tag ansehen →</button>
+</div>
+
+<div class="card hidden" id="preview">
+<h2>Dein Tag 1 wurde bereits vorbereitet. 👀</h2>
+<div class="tr">1. günün şimdiden hazırlandı.</div>
+
+<div class="task">🎯 <b>Eine klare Hauptaufgabe wählen</b><br><span class="tr">Bugün için tek bir ana görev belirle.</span></div>
+
+<div class="task lock">📵 Persönliche Fokus-Aufgabe</div>
+<div class="task lock">🌙 Persönlicher Abend-Check</div>
+
+<p>🔒 Weitere Aufgaben sind in deinem persönlichen 30-Tage-System verfügbar.</p>
+<div class="tr">Diğer görevler kişisel 30 günlük sisteminde açılacak.</div>
+
+<button onclick="show('offer')">Mein System ansehen →</button>
+</div>
+
+<div class="card hidden" id="offer">
+<h2>Dein persönliches 30-Tage-System</h2>
+<div class="tr">Kişisel 30 günlük sistemin</div>
+
+<p>🧠 Persönliche Analyse<br>
+📅 30-Tage-Plan<br>
+🤖 AI Coach<br>
+🌙 Abend-Check-in<br>
+🏆 Fortschritt & Badges</p>
+
+<div class="price">€9,99</div>
+<p>Einmalig. Kein Abo.</p>
+<div class="tr">Tek seferlik. Abonelik yok.</div>
+
+<button onclick="show('dashboard')">Mein 30-Tage-System starten →</button>
+</div>
+
+<div class="card hidden" id="dashboard">
+<h1 id="morning"></h1>
+<p>HEUTIGER FOKUS</p>
+<div class="tr">BUGÜNÜN ODAĞI</div>
+
+<div class="task">☐ 🎯 Wichtigste Aufgabe zuerst</div>
+<div class="task">☐ 📵 20 Minuten Fokus ohne Handy</div>
+<div class="task">☐ 🌙 2-Minuten-Abendcheck</div>
+
+<h2>🔥 1 Tag gestartet</h2>
+
+<div class="task">
+<b>🤖 AI Coach</b>
+<p>Starte klein. Dein Ziel heute ist nicht Perfektion, sondern Wiederholbarkeit.</p>
+<div class="tr">Küçük başla. Bugünkü hedefin mükemmellik değil, tekrar edilebilirlik.</div>
+</div>
+</div>
+</div>
+
+<script>
+let user="";
+let q=0;
+let answers=[];
+
+const qs=[
+["Was möchtest du am meisten verändern?",["🔥 Mehr Disziplin","🧠 Bessere Konzentration","📱 Weniger Zeit am Handy","📅 Eine feste Tagesroutine"]],
+["Was passiert, wenn du dir ein neues Ziel setzt?",["🚀 Ich starte motiviert und höre schnell auf","⏳ Ich schiebe den Start auf","🔁 Ich verliere später den Rhythmus","✅ Ich bleibe meistens konsequent"]],
+["Wie oft schiebst du wichtige Dinge auf?",["😵 Fast immer","😕 Oft","😐 Manchmal","🙂 Selten"]],
+["Was lenkt dich am meisten ab?",["📱 Social Media","💬 Nachrichten","🎬 Videos / Serien","💭 Meine Gedanken"]],
+["Wie oft greifst du automatisch zum Handy?",["📱 Sehr häufig","📲 Häufig","🤳 Manchmal","🧘 Selten"]],
+["Wie sieht dein Alltag aus?",["🌪️ Sehr chaotisch","📝 Ich plane, halte mich aber selten daran","📆 Etwas strukturiert","✅ Gut strukturiert"]],
+["Wann hast du die meiste Energie?",["🌅 Morgens","☀️ Mittags","🌇 Abends","🌙 Nachts"]],
+["Wie zufrieden bist du mit deinem Schlaf?",["😩 Überhaupt nicht","😕 Eher unzufrieden","😐 Es geht","😌 Zufrieden"]],
+["Warum gibst du Pläne meistens auf?",["📉 Motivation","⏱️ Keine schnellen Ergebnisse","📱 Ablenkung","😴 Müdigkeit"]],
+["Wie lange kannst du dich konzentrieren?",["⏳ Unter 10 Minuten","🕒 10–25 Minuten","🧠 25–45 Minuten","🎯 Über 45 Minuten"]],
+["Wie viel Zeit möchtest du täglich investieren?",["🌱 10 Minuten","⚡ 20 Minuten","🎯 30 Minuten","🚀 45 Minuten"]],
+["Was wäre nach 30 Tagen deine wichtigste Veränderung?",["🎯 Mehr Kontrolle","🔥 Mehr Disziplin","🧠 Mehr Fokus","📅 Eine feste Routine"]]
+];
+
+function show(id){
+document.querySelectorAll(".card").forEach(x=>x.classList.add("hidden"));
+document.getElementById(id).classList.remove("hidden");
+window.scrollTo(0,0);
+}
+
+function begin(){
+user=document.getElementById("username").value.trim()||"Du";
+q=0;
+render();
+show("quiz");
+}
+
+function render(){
+document.getElementById("num").innerText=(q+1)+" / 12";
+document.getElementById("bar").style.width=((q+1)/12*100)+"%";
+document.getElementById("question").innerText=qs[q][0];
+document.getElementById("options").innerHTML=qs[q][1].map((x,i)=>
+`<div class="option" onclick="pick(this,'${x.replace(/'/g,"")}')">${x}</div>`
+).join("");
+}
+
+function pick(el,val){
+document.querySelectorAll(".option").forEach(x=>x.classList.remove("on"));
+el.classList.add("on");
+answers[q]=val;
+}
+
+function next(){
+if(!answers[q])return;
+q++;
+if(q<12){render();}
+else{
+document.getElementById("hello").innerText=user+", hier ist dein Profil.";
+document.getElementById("morning").innerText="Guten Morgen, "+user+" ☀️";
+show("result");
+}
+}
+</script>
+</body>
+</html>
