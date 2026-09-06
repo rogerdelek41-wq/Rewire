@@ -274,8 +274,16 @@ show("result");
 }
 const dailyTasks = document.querySelectorAll(".dailyTask");
 
-dailyTasks.forEach(task => {
-  task.addEventListener("change", updateProgress);
+const savedTasks = JSON.parse(localStorage.getItem("rewireDay1Tasks") || "[]");
+
+dailyTasks.forEach((task, index) => {
+  task.checked = savedTasks[index] || false;
+
+  task.addEventListener("change", () => {
+    const states = Array.from(dailyTasks).map(t => t.checked);
+    localStorage.setItem("rewireDay1Tasks", JSON.stringify(states));
+    updateProgress();
+  });
 });
 
 function updateProgress() {
@@ -289,6 +297,8 @@ function updateProgress() {
   document.getElementById("progressBar").style.width =
     percent + "%";
 }
+
+updateProgress();
 </script>
 </body>
 </html>
