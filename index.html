@@ -187,8 +187,8 @@ input{width:100%;padding:16px;border:1px solid #ddd4e3;border-radius:14px;font-s
 
 <div class="task">
 <b>🏆 Fortschritt</b>
-<p>Tag 1 von 30 · 0% abgeschlossen</p>
-<div class="progress"><div style="width:3%"></div></div>
+<p id="progressText">Tag 1 von 30 · 0% abgeschlossen</p>
+<div class="progress"><div id="progressBar" style="width:0%"></div></div>
 </div>
 
 <div class="task lock">
@@ -271,6 +271,23 @@ document.getElementById("hello").innerText=user+", hier ist dein Profil.";
 document.getElementById("morning").innerText="Guten Morgen, "+user+" ☀️";
 show("result");
 }
+}
+const dailyTasks = document.querySelectorAll(".dailyTask");
+
+dailyTasks.forEach(task => {
+  task.addEventListener("change", updateProgress);
+});
+
+function updateProgress() {
+  const total = dailyTasks.length;
+  const completed = document.querySelectorAll(".dailyTask:checked").length;
+  const percent = Math.round((completed / total) * 100);
+
+  document.getElementById("progressText").innerText =
+    `Tag 1 von 30 · ${percent}% abgeschlossen`;
+
+  document.getElementById("progressBar").style.width =
+    percent + "%";
 }
 </script>
 </body>
