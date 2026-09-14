@@ -299,6 +299,120 @@ function updateProgress() {
 }
 
 updateProgress();
+// ===== REWIRE 30 GÜNLÜK OTOMATİK SİSTEM =====
+
+const rewirePlans = [
+  ["🎯 Bugünün en önemli görevini tamamla","📵 20 dakika telefonsuz odaklan","🌙 2 dakikalık akşam kontrolü"],
+  ["🧹 Çevrenden bir dikkat dağıtıcıyı kaldır","🎯 25 dakika tek işe odaklan","📝 Bugünün kısa değerlendirmesini yap"],
+  ["📵 Sabah ilk 30 dakika telefona bakma","🔥 Ertelediğin küçük bir işi bitir","🌙 Yarın için tek hedef belirle"],
+  ["🎯 Günün en önemli işini önce yap","📵 30 dakika kesintisiz odaklan","📝 Bugün neyi iyi yaptığını yaz"],
+  ["🧠 Bir kötü alışkanlığını fark et","🔥 Yerine iyi bir davranış koy","🌙 Gününü değerlendir"],
+  ["📵 45 dakika sosyal medyasız kal","🎯 Tek bir önemli görevi tamamla","📝 Yarın için plan yap"],
+  ["🏆 İlk haftanı değerlendir","🧠 En büyük dikkat dağıtıcını belirle","🌙 Gelecek haftanın hedefini seç"],
+
+  ["🌅 Güne plansız başlama","🎯 30 dakika derin odaklan","🌙 Akşam kontrolünü tamamla"],
+  ["📵 Gereksiz bildirimleri kapat","🔥 Zor görevi önce yap","📝 Günün sonucunu yaz"],
+  ["🎯 Bugün sadece 3 önemli iş belirle","📵 45 dakika telefonsuz çalış","🌙 Yarın için hazırlan"],
+  ["🧠 Erteleme geldiğinde 5 dakika başla","🔥 Başladığın işi tamamla","📝 Kendini değerlendir"],
+  ["🌅 Sabah rutinini uygula","🎯 40 dakika odaklan","🌙 Akşam kontrolü yap"],
+  ["📵 Sosyal medyayı bilinçli kullan","🔥 Bir önemli işi bitir","📝 Bugünün dersini yaz"],
+  ["🏆 2. haftayı değerlendir","📊 İlerlemeni kontrol et","🎯 Yeni haftanın hedefini belirle"],
+
+  ["🌅 Güne en önemli hedefle başla","🎯 45 dakika derin çalışma","🌙 Akşam değerlendirmesi"],
+  ["📵 İlk 60 dakika sosyal medya yok","🔥 Ertelediğin işi tamamla","📝 Yarın için tek hedef"],
+  ["🧠 Dikkatin dağıldığında tekrar dön","🎯 Bir işi tamamen bitir","🌙 Gününü puanla"],
+  ["🔥 En zor işi önce yap","📵 45 dakika telefon yok","📝 Bugünün başarısını yaz"],
+  ["🌅 Sabah planını tamamla","🎯 50 dakika odaklan","🌙 Akşam kontrolü"],
+  ["🧠 Bahane üretmeden 5 dakika başla","🔥 Önemli görevi bitir","📝 Yarın için hazırlan"],
+  ["🏆 3. haftayı değerlendir","📊 En büyük gelişimini belirle","🎯 Son haftanın hedefini seç"],
+
+  ["🎯 Önceliklerini belirle","📵 60 dakika derin odaklan","🌙 Akşam değerlendirmesi"],
+  ["🌅 Güne telefonsuz başla","🔥 En önemli işi tamamla","📝 Bugünün dersini yaz"],
+  ["🧠 Disiplin motivasyondan önce","🎯 60 dakika tek işe odaklan","🌙 Yarın için plan"],
+  ["📵 Gereksiz ekran süresini azalt","🔥 Ertelediğin işi bitir","📝 Gününü değerlendir"],
+  ["🌅 Sabah rutinini eksiksiz yap","🎯 En önemli hedefe ilerle","🌙 Akşam kontrolü"],
+  ["🧠 Başladığın işi yarım bırakma","📵 60 dakika telefonsuz odak","📝 Bugünün başarısını yaz"],
+  ["🔥 Konfor alanının dışında bir şey yap","🎯 Günün ana görevini tamamla","🌙 Yarın için hazırlan"],
+  ["🏆 Son iki günü güçlü bitir","📊 29 günlük gelişimini incele","📝 Devam ettireceğin alışkanlıkları seç"],
+  ["🏆 30 GÜN TAMAMLANDI","🧠 Kazandığın 3 alışkanlığı belirle","🚀 Yeni 30 gün için hedef oluştur"]
+];
+
+let rewireStart = localStorage.getItem("rewireStartDate");
+
+if (!rewireStart) {
+  rewireStart = new Date().toISOString();
+  localStorage.setItem("rewireStartDate", rewireStart);
+}
+
+const startDate = new Date(rewireStart);
+const nowDate = new Date();
+let currentDay = Math.floor((nowDate - startDate) / 86400000) + 1;
+
+if (currentDay < 1) currentDay = 1;
+if (currentDay > 30) currentDay = 30;
+
+const currentPlan = rewirePlans[currentDay - 1];
+const taskBoxes = document.querySelectorAll(".dailyTask");
+
+taskBoxes.forEach((box, index) => {
+  const label = box.closest("label");
+
+  if (label && currentPlan[index]) {
+    label.childNodes.forEach(node => {
+      if (node.nodeType === 3) node.remove();
+    });
+    label.append(" " + currentPlan[index]);
+  }
+});
+
+const dayTitle = document.querySelector("#dashboard h2");
+if (dayTitle) {
+  dayTitle.innerText = "🔥 Tag " + currentDay + " gestartet";
+}
+
+const savedDayTasks = JSON.parse(
+  localStorage.getItem("rewireDay" + currentDay + "Tasks") || "[]"
+);
+
+taskBoxes.forEach((box, index) => {
+  box.checked = savedDayTasks[index] || false;
+
+  box.addEventListener("change", () => {
+    const states = Array.from(taskBoxes).map(task => task.checked);
+
+    localStorage.setItem(
+      "rewireDay" + currentDay + "Tasks",
+      JSON.stringify(states)
+    );
+
+    updateRewireDayProgress();
+  });
+});
+
+function updateRewireDayProgress() {
+  const total = taskBoxes.length;
+  const completed = document.querySelectorAll(".dailyTask:checked").length;
+  const percent = total ? Math.round((completed / total) * 100) : 0;
+
+  document.getElementById("progressText").innerText =
+    "Tag " + currentDay + " von 30 · " + percent + "% abgeschlossen";
+
+  document.getElementById("progressBar").style.width = percent + "%";
+
+  const lock = document.querySelector(".task.lock");
+
+  if (lock) {
+    if (currentDay < 30) {
+      lock.innerText = "🔒 Tag " + (currentDay + 1) + " wird morgen freigeschaltet";
+    } else {
+      lock.innerText = "🏆 30-Tage-System abgeschlossen";
+    }
+  }
+}
+
+updateRewireDayProgress();
+
+// ===== ENDE 30-TAGE-SYSTEM =====
 </script>
 </body>
 </html>
