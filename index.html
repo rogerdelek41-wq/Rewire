@@ -411,7 +411,57 @@ function updateRewireDayProgress() {
 }
 
 updateRewireDayProgress();
+// ===== AI COACH 30 TAGE =====
 
+const coachMessages = [
+  "Starte klein. Heute zählt nicht Perfektion, sondern dass du anfängst.",
+  "Motivation kommt und geht. Deine Aufgabe heute ist, trotzdem weiterzumachen.",
+  "Schütze deine Aufmerksamkeit. Weniger Ablenkung bedeutet mehr Kontrolle.",
+  "Mach zuerst das, was du normalerweise aufschieben würdest.",
+  "Du musst heute nicht alles schaffen. Eine wichtige Sache reicht.",
+  "Konstanz schlägt Intensität. Bleib heute bei deinem Plan.",
+  "Eine Woche geschafft. Schau zurück, lerne daraus und mach weiter.",
+
+  "Beginne die neue Woche bewusst. Du entscheidest, worauf deine Energie geht.",
+  "Dein Handy kontrolliert nicht deinen Tag. Du entscheidest, wann du es benutzt.",
+  "Drei klare Prioritäten sind besser als zehn angefangene Aufgaben.",
+  "Wenn du etwas aufschiebst, arbeite nur fünf Minuten daran. Der Anfang ist entscheidend.",
+  "Deine Routine wird stärker, wenn du sie auch an schlechten Tagen einhältst.",
+  "Disziplin bedeutet, die richtige Entscheidung auch ohne Motivation zu treffen.",
+  "Zwei Wochen geschafft. Dein Fortschritt entsteht durch Wiederholung.",
+
+  "Heute beginnt die zweite Hälfte. Bleib ruhig und konzentriere dich auf den nächsten Schritt.",
+  "Starte deinen Morgen bewusst, bevor andere Dinge deine Aufmerksamkeit übernehmen.",
+  "Ablenkung ist normal. Entscheidend ist, wie schnell du wieder zurückkommst.",
+  "Die schwierigste Aufgabe zuerst. Danach wird dein Tag leichter.",
+  "Du brauchst keinen perfekten Tag. Du brauchst einen Tag, an dem du weitermachst.",
+  "Fünf Minuten können reichen, um Widerstand zu überwinden. Fang jetzt an.",
+  "Drei Wochen geschafft. Aus einzelnen Entscheidungen wird langsam eine Gewohnheit.",
+
+  "Setze klare Prioritäten. Nicht alles verdient heute deine Aufmerksamkeit.",
+  "Kontrolliere deinen Morgen, bevor dein Handy deinen Morgen kontrolliert.",
+  "Motivation startet dich. Disziplin bringt dich ans Ziel.",
+  "Jede unnötige Ablenkung kostet Fokus. Entscheide bewusst, was du zulässt.",
+  "Deine Routine ist jetzt wichtiger als deine Stimmung.",
+  "Beende, was du angefangen hast. Genau dadurch wächst dein Vertrauen in dich selbst.",
+  "Wachstum beginnt dort, wo Bequemlichkeit endet. Fordere dich heute ein bisschen heraus.",
+  "Du bist fast am Ziel. Jetzt nicht nachlassen – beende, was du begonnen hast.",
+  "30 Tage. Schau dir an, was du aufgebaut hast. Jetzt geht es darum, es beizubehalten."
+];
+
+const coachCard = Array.from(document.querySelectorAll(".task")).find(
+  card => card.textContent.includes("AI Coach")
+);
+
+if (coachCard) {
+  const coachText = coachCard.querySelector("p");
+
+  if (coachText) {
+    coachText.innerText = coachMessages[currentDay - 1];
+  }
+}
+
+// ===== ENDE AI COACH =====
 // ===== ENDE 30-TAGE-SYSTEM =====
 </script>
 </body>
