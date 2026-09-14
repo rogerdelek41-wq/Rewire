@@ -190,7 +190,39 @@ input{width:100%;padding:16px;border:1px solid #ddd4e3;border-radius:14px;font-s
 <p id="progressText">Tag 1 von 30 · 0% abgeschlossen</p>
 <div class="progress"><div id="progressBar" style="width:0%"></div></div>
 </div>
+<div class="task" id="eveningCheckin">
+  <b>🌙 Abend-Check-in</b>
 
+  <p>Wie war dein Fokus heute?</p>
+  <select id="focusRating">
+    <option value="">Auswählen...</option>
+    <option value="1">😴 Sehr schlecht</option>
+    <option value="2">😕 Schlecht</option>
+    <option value="3">🙂 Okay</option>
+    <option value="4">🔥 Gut</option>
+    <option value="5">🏆 Sehr gut</option>
+  </select>
+
+  <p>Hast du deine wichtigste Aufgabe erledigt?</p>
+  <select id="mainTaskDone">
+    <option value="">Auswählen...</option>
+    <option value="ja">✅ Ja</option>
+    <option value="nein">❌ Nein</option>
+  </select>
+
+  <p>Wie zufrieden bist du mit deinem Tag?</p>
+  <select id="dayRating">
+    <option value="">Auswählen...</option>
+    <option value="1">😞 1/5</option>
+    <option value="2">😕 2/5</option>
+    <option value="3">🙂 3/5</option>
+    <option value="4">😊 4/5</option>
+    <option value="5">🔥 5/5</option>
+  </select>
+
+  <button type="button" id="saveCheckin">Check-in speichern</button>
+  <p id="checkinMessage"></p>
+</div>
 <div class="task lock">
 🔒 Tag 2 wird morgen freigeschaltet
 </div>
