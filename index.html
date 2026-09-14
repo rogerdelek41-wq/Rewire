@@ -502,6 +502,87 @@ if (coachCard) {
 
 // ===== ENDE AI COACH =====
 // ===== ENDE 30-TAGE-SYSTEM =====
+  // ===== ABEND-CHECK-IN =====
+
+const focusRating = document.getElementById("focusRating");
+const mainTaskDone = document.getElementById("mainTaskDone");
+const dayRating = document.getElementById("dayRating");
+const saveCheckin = document.getElementById("saveCheckin");
+const checkinMessage = document.getElementById("checkinMessage");
+
+const checkinKey = "rewireCheckinDay" + currentDay;
+
+const savedCheckin = JSON.parse(
+  localStorage.getItem(checkinKey) || "null"
+);
+
+if (savedCheckin) {
+  focusRating.value = savedCheckin.focus || "";
+  mainTaskDone.value = savedCheckin.mainTask || "";
+  dayRating.value = savedCheckin.day || "";
+  checkinMessage.innerText = "✅ Check-in gespeichert";
+}
+
+saveCheckin.addEventListener("click", () => {
+  if (!focusRating.value || !mainTaskDone.value || !dayRating.value) {
+    checkinMessage.innerText = "⚠️ Bitte beantworte alle drei Fragen.";
+    return;
+  }
+
+  const checkinData = {
+    focus: focusRating.value,
+    mainTask: mainTaskDone.value,
+    day: dayRating.value,
+    savedAt: new Date().toISOString()
+  };
+
+  localStorage.setItem(checkinKey, JSON.stringify(checkinData));
+  checkinMessage.innerText = "✅ Check-in gespeichert";
+  updateDayCompletionStatus();
+});
+function isCurrentDayFullyComplete() {
+  const tasks = Array.from(document.querySelectorAll(".dailyTask"));
+  const allTasksDone =
+    tasks.length === 3 && tasks.every(task => task.checked);
+
+  const checkinDone =
+    !!localStorage.getItem("rewireCheckinDay" + currentDay);
+
+  return allTasksDone && checkinDone;
+}
+
+function updateDayCompletionStatus() {
+  const complete = isCurrentDayFullyComplete();
+  const lock = document.querySelector(".task.lock");
+
+  localStorage.setItem(
+    "rewireDay" + currentDay + "Complete",
+    complete ? "true" : "false"
+  );
+
+  if (lock) {
+    if (complete && currentDay < 30) {
+      lock.innerText =
+        "✅ Tag " + currentDay +
+        " abgeschlossen · 🔒 Tag " +
+        (currentDay + 1) +
+        " wird morgen freigeschaltet";
+    } else if (complete && currentDay === 30) {
+      lock.innerText =
+        "🏆 30-Tage-System erfolgreich abgeschlossen";
+    } else {
+      lock.innerText =
+        "🔒 Schließe alle Aufgaben und den Abend-Check-in ab.";
+    }
+  }
+}
+
+document.querySelectorAll(".dailyTask").forEach(task => {
+  task.addEventListener("change", updateDayCompletionStatus);
+});
+
+updateDayCompletionStatus();
+// ===== ENDE ABEND-CHECK-IN =====
 </script>
 </body>
 </html>
