@@ -177,7 +177,7 @@ input{width:100%;padding:16px;border:1px solid #ddd4e3;border-radius:14px;font-s
 
 <div class="task">
 <b>📅 Dein heutiger Plan</b>
-<p>
+<p id="dailyPlan">
 07:30 Aufstehen<br>
 08:00 Fokusblock<br>
 12:00 Wichtigste Aufgabe<br>
@@ -363,7 +363,47 @@ taskBoxes.forEach((box, index) => {
     label.append(" " + currentPlan[index]);
   }
 });
+const dailyPlans = [
+  "07:30 Aufstehen<br>08:00 Fokusblock<br>12:00 Wichtigste Aufgabe<br>20:30 Abend-Check-in",
+  "07:30 Aufstehen<br>08:00 30 Minuten ohne Handy<br>12:00 Fokusaufgabe<br>20:30 Tagesreflexion",
+  "07:30 Aufstehen<br>08:00 Morgenroutine<br>12:00 Wichtigste Aufgabe zuerst<br>20:30 Abend-Check-in",
+  "07:30 Aufstehen<br>08:00 Fokusblock<br>12:00 Prioritäten prüfen<br>20:30 Tagesreflexion",
+  "07:30 Aufstehen<br>08:00 40 Minuten Fokus<br>12:00 Schwierige Aufgabe erledigen<br>20:30 Abend-Check-in",
+  "08:00 Aufstehen<br>08:30 Handyfreie Zeit<br>12:00 Wochenziel prüfen<br>20:30 Tagesreflexion",
+  "08:00 Aufstehen<br>08:30 Wochenrückblick<br>12:00 Nächste Woche planen<br>20:30 Früh abschalten",
 
+  "07:30 Aufstehen<br>08:00 Fokusblock<br>12:00 Wichtigstes Ziel<br>20:30 Abend-Check-in",
+  "07:30 Aufstehen<br>08:00 Ohne Social Media starten<br>12:00 Fokusaufgabe<br>20:30 Tagesreflexion",
+  "07:30 Aufstehen<br>08:00 45 Minuten Fokus<br>12:00 Drei wichtige Aufgaben<br>20:30 Abend-Check-in",
+  "07:30 Aufstehen<br>08:00 Morgenroutine<br>12:00 Schwierige Aufgabe zuerst<br>20:30 Tagesreflexion",
+  "07:30 Aufstehen<br>08:00 Fokusblock<br>12:00 Nicht aufschieben<br>20:30 Abend-Check-in",
+  "08:00 Aufstehen<br>08:30 Handyfreie Zeit<br>12:00 Wochenziel verfolgen<br>20:30 Tagesreflexion",
+  "08:00 Aufstehen<br>08:30 Wochenrückblick<br>12:00 Fortschritt prüfen<br>20:30 Neue Woche planen",
+
+  "07:30 Aufstehen<br>08:00 45 Minuten Fokus<br>12:00 Wichtigste Aufgabe<br>20:30 Abend-Check-in",
+  "07:30 Aufstehen<br>08:00 Erste Stunde ohne Social Media<br>12:00 Fokusaufgabe<br>20:30 Tagesreflexion",
+  "07:30 Aufstehen<br>08:00 Morgenroutine<br>12:00 Ablenkungen vermeiden<br>20:30 Abend-Check-in",
+  "07:30 Aufstehen<br>08:00 Fokusblock<br>12:00 Komfortzone verlassen<br>20:30 Tagesreflexion",
+  "07:30 Aufstehen<br>08:00 Prioritäten setzen<br>12:00 Eine Aufgabe vollständig beenden<br>20:30 Abend-Check-in",
+  "08:00 Aufstehen<br>08:30 Handyfreie Zeit<br>12:00 Wochenfortschritt prüfen<br>20:30 Tagesreflexion",
+  "08:00 Aufstehen<br>08:30 Wochenrückblick<br>12:00 Erfolge notieren<br>20:30 Letzte Woche planen",
+
+  "07:30 Aufstehen<br>08:00 60 Minuten Fokus<br>12:00 Wichtigstes Ziel<br>20:30 Abend-Check-in",
+  "07:30 Aufstehen<br>08:00 Morgen ohne Handy<br>12:00 Wichtigste Aufgabe zuerst<br>20:30 Tagesreflexion",
+  "07:30 Aufstehen<br>08:00 Fokusblock<br>12:00 Disziplin vor Motivation<br>20:30 Abend-Check-in",
+  "07:30 Aufstehen<br>08:00 Keine unnötige Bildschirmzeit<br>12:00 Aufgabe sofort beginnen<br>20:30 Tagesreflexion",
+  "07:30 Aufstehen<br>08:00 Morgenroutine<br>12:00 Angefangene Aufgabe beenden<br>20:30 Abend-Check-in",
+  "07:30 Aufstehen<br>08:00 60 Minuten Fokus<br>12:00 Komfortzone verlassen<br>20:30 Tagesreflexion",
+  "08:00 Aufstehen<br>08:30 Wochenrückblick<br>12:00 Fortschritt der 4 Wochen prüfen<br>20:30 Ziele festigen",
+  "07:30 Aufstehen<br>08:00 Fokusblock<br>12:00 Letzte Herausforderungen meistern<br>20:30 29-Tage-Rückblick",
+  "07:30 Aufstehen<br>08:00 Bewusster Start<br>12:00 30-Tage-Erfolg feiern<br>20:30 Neue Gewohnheiten planen"
+];
+
+const dailyPlan = document.getElementById("dailyPlan");
+
+if (dailyPlan && dailyPlans[currentDay - 1]) {
+  dailyPlan.innerHTML = dailyPlans[currentDay - 1];
+}
 const dayTitle = document.querySelector("#dashboard h2");
 if (dayTitle) {
   dayTitle.innerText = "🔥 Tag " + currentDay + " gestartet";
