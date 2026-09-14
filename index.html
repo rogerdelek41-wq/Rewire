@@ -300,41 +300,40 @@ function updateProgress() {
 
 updateProgress();
 // ===== REWIRE 30 GÜNLÜK OTOMATİK SİSTEM =====
-
 const rewirePlans = [
-  ["🎯 Bugünün en önemli görevini tamamla","📵 20 dakika telefonsuz odaklan","🌙 2 dakikalık akşam kontrolü"],
-  ["🧹 Çevrenden bir dikkat dağıtıcıyı kaldır","🎯 25 dakika tek işe odaklan","📝 Bugünün kısa değerlendirmesini yap"],
-  ["📵 Sabah ilk 30 dakika telefona bakma","🔥 Ertelediğin küçük bir işi bitir","🌙 Yarın için tek hedef belirle"],
-  ["🎯 Günün en önemli işini önce yap","📵 30 dakika kesintisiz odaklan","📝 Bugün neyi iyi yaptığını yaz"],
-  ["🧠 Bir kötü alışkanlığını fark et","🔥 Yerine iyi bir davranış koy","🌙 Gününü değerlendir"],
-  ["📵 45 dakika sosyal medyasız kal","🎯 Tek bir önemli görevi tamamla","📝 Yarın için plan yap"],
-  ["🏆 İlk haftanı değerlendir","🧠 En büyük dikkat dağıtıcını belirle","🌙 Gelecek haftanın hedefini seç"],
+["🎯 Erledige heute deine wichtigste Aufgabe","📵 20 Minuten Fokus ohne Handy","🌙 2-Minuten-Abendcheck"],
+["🧹 Entferne eine Ablenkung aus deiner Umgebung","🎯 Arbeite konzentriert an einer wichtigen Aufgabe","🌙 Plane morgen in 2 Minuten"],
+["📵 Die ersten 30 Minuten morgens ohne Handy","🔥 Erledige eine aufgeschobene Aufgabe","🌙 Reflektiere kurz über deinen Tag"],
+["🎯 Erledige die wichtigste Aufgabe zuerst","📵 30 Minuten ohne Social Media","🌙 Bereite deinen nächsten Tag vor"],
+["🧠 Erkenne eine schlechte Gewohnheit","🔥 Ersetze sie durch eine bessere Handlung","🌙 Notiere deinen heutigen Erfolg"],
+["📵 45 Minuten ohne Social Media","🎯 Konzentriere dich auf nur ein Ziel","🌙 2-Minuten-Abendcheck"],
+["🏆 Werte deine erste Woche aus","🧠 Erkenne deine größte Ablenkung","🌙 Plane deine nächste Woche"],
 
-  ["🌅 Güne plansız başlama","🎯 30 dakika derin odaklan","🌙 Akşam kontrolünü tamamla"],
-  ["📵 Gereksiz bildirimleri kapat","🔥 Zor görevi önce yap","📝 Günün sonucunu yaz"],
-  ["🎯 Bugün sadece 3 önemli iş belirle","📵 45 dakika telefonsuz çalış","🌙 Yarın için hazırlan"],
-  ["🧠 Erteleme geldiğinde 5 dakika başla","🔥 Başladığın işi tamamla","📝 Kendini değerlendir"],
-  ["🌅 Sabah rutinini uygula","🎯 40 dakika odaklan","🌙 Akşam kontrolü yap"],
-  ["📵 Sosyal medyayı bilinçli kullan","🔥 Bir önemli işi bitir","📝 Bugünün dersini yaz"],
-  ["🏆 2. haftayı değerlendir","📊 İlerlemeni kontrol et","🎯 Yeni haftanın hedefini belirle"],
+["🌅 Starte deinen Tag mit einem Plan","🎯 30 Minuten konzentrierte Arbeit","🌙 Prüfe deinen Fortschritt"],
+["📵 Schalte unnötige Benachrichtigungen aus","🔥 Erledige zuerst eine schwierige Aufgabe","🌙 2-Minuten-Abendcheck"],
+["🎯 Lege heute nur 3 wichtige Aufgaben fest","📵 45 Minuten Fokus ohne Handy","🌙 Plane den morgigen Tag"],
+["🧠 Wenn du aufschieben willst, starte für 5 Minuten","🔥 Beende eine angefangene Aufgabe","🌙 Notiere, was heute gut lief"],
+["🌅 Halte deine Morgenroutine ein","🎯 40 Minuten konzentrierte Arbeit","🌙 Reflektiere über deinen Tag"],
+["📵 Nutze Social Media bewusst","🔥 Erledige eine Aufgabe ohne Unterbrechung","🌙 Bereite morgen vor"],
+["🏆 Werte deine zweite Woche aus","📊 Kontrolliere deinen Fortschritt","🌙 Setze ein Ziel für Woche 3"],
 
-  ["🌅 Güne en önemli hedefle başla","🎯 45 dakika derin çalışma","🌙 Akşam değerlendirmesi"],
-  ["📵 İlk 60 dakika sosyal medya yok","🔥 Ertelediğin işi tamamla","📝 Yarın için tek hedef"],
-  ["🧠 Dikkatin dağıldığında tekrar dön","🎯 Bir işi tamamen bitir","🌙 Gününü puanla"],
-  ["🔥 En zor işi önce yap","📵 45 dakika telefon yok","📝 Bugünün başarısını yaz"],
-  ["🌅 Sabah planını tamamla","🎯 50 dakika odaklan","🌙 Akşam kontrolü"],
-  ["🧠 Bahane üretmeden 5 dakika başla","🔥 Önemli görevi bitir","📝 Yarın için hazırlan"],
-  ["🏆 3. haftayı değerlendir","📊 En büyük gelişimini belirle","🎯 Son haftanın hedefini seç"],
+["🌅 Beginne den Tag mit deinem wichtigsten Ziel","🎯 45 Minuten Deep Work","🌙 2-Minuten-Abendcheck"],
+["📵 Die ersten 60 Minuten ohne Social Media","🔥 Erledige etwas, das du aufgeschoben hast","🌙 Plane morgen"],
+["🧠 Kehre nach einer Ablenkung sofort zurück","🎯 Arbeite an nur einer Aufgabe","🌙 Bewerte deinen Fokus"],
+["🔥 Verlasse heute deine Komfortzone","📵 45 Minuten ohne Handy","🌙 Notiere, was du gelernt hast"],
+["🎯 Setze klare Prioritäten","🧠 Vermeide Multitasking","🌙 Bereite den nächsten Tag vor"],
+["🌅 Beginne den Morgen bewusst","🔥 Beende deine wichtigste Aufgabe","🌙 2-Minuten-Abendcheck"],
+["🏆 Werte deine dritte Woche aus","📊 Prüfe deine Entwicklung","🌙 Plane die letzte Phase"],
 
-  ["🎯 Önceliklerini belirle","📵 60 dakika derin odaklan","🌙 Akşam değerlendirmesi"],
-  ["🌅 Güne telefonsuz başla","🔥 En önemli işi tamamla","📝 Bugünün dersini yaz"],
-  ["🧠 Disiplin motivasyondan önce","🎯 60 dakika tek işe odaklan","🌙 Yarın için plan"],
-  ["📵 Gereksiz ekran süresini azalt","🔥 Ertelediğin işi bitir","📝 Gününü değerlendir"],
-  ["🌅 Sabah rutinini eksiksiz yap","🎯 En önemli hedefe ilerle","🌙 Akşam kontrolü"],
-  ["🧠 Başladığın işi yarım bırakma","📵 60 dakika telefonsuz odak","📝 Bugünün başarısını yaz"],
-  ["🔥 Konfor alanının dışında bir şey yap","🎯 Günün ana görevini tamamla","🌙 Yarın için hazırlan"],
-  ["🏆 Son iki günü güçlü bitir","📊 29 günlük gelişimini incele","📝 Devam ettireceğin alışkanlıkları seç"],
-  ["🏆 30 GÜN TAMAMLANDI","🧠 Kazandığın 3 alışkanlığı belirle","🚀 Yeni 30 gün için hedef oluştur"]
+["🎯 Bestimme deine Prioritäten","📵 60 Minuten konzentrierte Arbeit","🌙 Kontrolliere deinen Fortschritt"],
+["🌅 Starte den Tag ohne Handy","🔥 Erledige deine wichtigste Aufgabe zuerst","🌙 Plane morgen"],
+["🧠 Disziplin vor Motivation","🎯 60 Minuten Fokus","🌙 Reflektiere über deinen Tag"],
+["📵 Reduziere unnötige Bildschirmzeit","🔥 Erledige eine aufgeschobene Aufgabe","🌙 2-Minuten-Abendcheck"],
+["🌅 Halte deine Morgenroutine vollständig ein","🎯 Konzentriere dich auf dein wichtigstes Ziel","🌙 Bereite morgen vor"],
+["🧠 Beende, was du angefangen hast","📵 60 Minuten ohne Ablenkung","🌙 Notiere deinen Fortschritt"],
+["🔥 Tue etwas außerhalb deiner Komfortzone","🎯 Arbeite konzentriert an deinem Ziel","🌙 Reflektiere über die letzten 4 Wochen"],
+["🏆 Beende die letzten zwei Tage stark","📊 Sieh dir deinen Fortschritt der letzten 29 Tage an","🌙 Bereite den letzten Tag vor"],
+["🏆 30 TAGE GESCHAFFT!","🧠 Wähle 3 Gewohnheiten, die du beibehalten willst","🔥 Setze dir dein nächstes 30-Tage-Ziel"]
 ];
 
 let rewireStart = localStorage.getItem("rewireStartDate");
